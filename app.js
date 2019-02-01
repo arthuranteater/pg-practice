@@ -10,3 +10,12 @@ app.use(cors());
 app.listen(port, (req, res) => {
     console.log(`listening on ${port}`);
 });
+
+app.get(port, (req, res, next) => {
+    res.send('working')
+})
+
+app.use((err, req, res, next) => {
+    console.log(err.stack)
+    res.status('400').send('not working')
+})
